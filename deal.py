@@ -26,8 +26,8 @@ for count in range(len(lines)):
 dict2['data']=list
 
 #jso = json.dumps(dict)
-print(dict2)
-#print(json.dumps(str))
+#print(dict2)
+print(json.dumps(dict2))
 # Notice comma to avoid automatic newline added by Python
 f.close() 
 
