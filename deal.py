@@ -6,17 +6,21 @@ lines=f.readlines()
 dict={}
 dict2={}
 dict2['taskid']='asdsafasasfsafsafa'
+record=1
 for count in range(len(lines)):
-    if re.match('<RECORD 2>',lines[count]):
+    if record>4:
         break
+    if re.match('<RECORD %d>'%(record+1),lines[count]):
+        record=record+1
+        list.append(dict)
     if lines[count]=='\n':
         continue
-    if re.match('<RECORD 1>',lines[count]):
+    if re.match('<RECORD %d>'%record,lines[count]):
         continue
     i=lines[count].find(':')
     j=len(lines[count])
     dict[lines[count][:i]]=lines[count][i+1:j-1]
-dict2['data']=dict
+dict2['data']=list
 
 #jso = json.dumps(dict)
 print(dict2)
