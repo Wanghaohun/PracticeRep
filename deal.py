@@ -4,6 +4,12 @@ import re
 import test2
 import urllib.parse
 import urllib.request
+
+test2.search()
+
+paths=os.listdir("D:\\python")  
+for path in paths:  
+    print(path)  
 ###get
 response = urllib.request.urlopen('http://192.168.31.101:8080/task/ei/get')
 html = response.read()  
@@ -27,7 +33,7 @@ response = urllib.request.urlopen(req)
 html = response.read()  
 print(html.decode('utf-8'))  
 ###
-test2.search()
+
 f=open(r"C:\Users\Administrator\EV_download\Engineering_Village_detailed_3-19-2018_5272473.txt","r")
 lines=f.readlines()
 dict={}
