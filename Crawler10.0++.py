@@ -1,4 +1,3 @@
-import sys  
 import getopt  
 import re
 import urllib
@@ -7,7 +6,7 @@ import time
 import os
 import io
 import hashlib
-
+from sys import argv
 def get_time():
     #返回本地时间
     localtime=time.strftime("%Y-%m-%d %H:%M:%S", time.localtime())
@@ -319,6 +318,7 @@ def usage():
     print ("————————————————————————————" )
 
 def main():     
+    chongming=0
     # 读取命令行选项,若没有该选项则显示用法  
     try:  
         # opts：一个列表，列表的每个元素为键值对  
@@ -326,25 +326,27 @@ def main():
         # sys.argv[1:]：只处理第二个及以后的参数  
         # "ts:h"：选项的简写，有冒号的表示后面必须接这个选项的值（如 -s hello）  
         # ["help", "test1", "say"] :当然也可以详细地写出来，不过要两条横杠（--）  
-        opts, args = getopt.getopt(sys.argv[1:], "s:hg:",["help", "sinablog","guanzhu"]) 
+        opts, args = getopt.getopt(argv[1:], "s:hg:",["help", "sinablog","guanzhu"]) 
         # print opts  
-  
-        # 具体处理命令行参数  
+        
+        # 具体处理命令行参数
+        usage()
         for o,v in opts:
                     
-            if sys.argv[1]=='':
+            if argv[1]=='':
                 usage()
             elif o in ("-h","--help"):  
                 usage()  
             elif o in ("-s", "--sinablog"): 
-                if sys.argv[2].isdigit():
-                    get_single(sys.argv[2])
-                elif os.path.exists(sys.argv[2]):
-                    multi_blog_from_txt(sys.argv[2])
+                if argv[2].isdigit():
+                    get_single(argv[2])
+                elif os.path.exists(argv[2]):
+                    multi_blog_from_txt(argv[2])
             elif o in ("-g","--guanzhu"):
-                get_guanzhu(sys.argv[2])
+                get_guanzhu(argv[2])
     except getopt.GetoptError:  
         # print str(err)  
         usage()  
-chongming=0  
-main()
+
+if __name__=='__main__':  
+    main()
